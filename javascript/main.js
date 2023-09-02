@@ -1,175 +1,94 @@
-//Funciones
-function saludar(){
-    if (nombre != "" && apellido != ""){
-        alert ( `Bienbenido  ${nombre}  ${apellido}`);
-    } else {
-        alert ("Nombre y apellido requerido");
+let titulo = document.getElementById("titulo");
+
+const encabezado = [
+    {logo:"./imagenes/logoburger.png",titulo:"Lluvia de Hamburguesas"},
+];
+
+encabezado.forEach((item)=> {
+    let divs = document.createElement("div");
+    divs.className = "titulo";
+    divs.innerHTML = `
+    <img src=${item.logo}>
+    <h1>${item.titulo}</h1>
+    `;
+    titulo.append(divs);
+})
+
+let contenedor = document.getElementById("contenedor");
+
+const carrito = [];
+
+const productos = [
+{imagen:"./imagenes/BurgerC.jpg", nombre:"Flint Loco", ingredientes: "Medallon de carne, cebolla, cheddar, bacon, muzzarella, pan con semillas",precio: 2500},
+{imagen:"./imagenes/BurgerP.jpg", nombre: "Baby Brent", ingredientes: "Medallon de pollo, tomate, lechuga, pan con semillas", precio: 2000},
+{imagen:"./imagenes/BurgerS.jpg", nombre: "Steve", ingredientes: "Medallon de soja, tomate, lechuga, pan de papa", precio: 1500},
+{imagen:"./imagenes/BurgerQ.jpg", nombre: "Chispas", ingredientes: "Medallon de carne, queso, pan de papa", precio: 1000},
+];
+
+productos.forEach((item) => {
+    let div = document.createElement("div");
+    div.className = "xd";
+    div.innerHTML = `
+    <img src=${item.imagen}>
+    <h2> ${item.nombre}</h2>
+    <p>Ingredientes: ${item.ingredientes}</p>
+    <span>$${item.precio}</span>
+    <button class="agregar-carrito boton-carrito" data-producto='${JSON.stringify(item)}'>Agregar al Carrito</button>
+    `;
+
+    contenedor.append(div);
+});
+
+document.getElementById("vaciar-carrito").classList.add("boton-vaciar-carrito");
+
+document.getElementById("vaciar-carrito").addEventListener("click", () => {
+    carrito.length = 0;
+    actualizarCarrito();
+});
+
+contenedor.addEventListener("click", (e) => {
+    if (e.target.classList.contains("agregar-carrito")) {
+        const productoSeleccionado = JSON.parse(e.target.getAttribute("data-producto"));
+        carrito.push(productoSeleccionado);
+        actualizarCarrito();
     }
+});
+
+function actualizarCarrito() {
+    const carritoContainer = document.getElementById("carrito");
+    carritoContainer.innerHTML = "";
+    let total = 0;
+
+    if (carrito.length === 0) {
+    carritoContainer.innerHTML = "<p>El carrito está vacío.</p>";
+    } else {
+    carrito.forEach((item) => {
+        total += item.precio;
+        carritoContainer.innerHTML += `
+        <div class="carrito-item">
+            <p>${item.nombre} - $${item.precio}</p>
+            <button class="eliminar-del-carrito boton-eliminar" data-nombre='${item.nombre}'>Eliminar</button>
+        </div>
+        `;
+    });
+    carritoContainer.innerHTML += `<p>Total: $${total.toFixed(2)}</p>`;
+    }
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+
+    const eliminarBotones = document.querySelectorAll(".eliminar-del-carrito");
+
+    eliminarBotones.forEach((boton) => {
+    boton.addEventListener("click", (e) => {
+        const nombreProducto = e.target.getAttribute("data-nombre");
+        const index = carrito.findIndex((item) => item.nombre === nombreProducto);
+        if (index !== -1) {
+        carrito.splice(index, 1);
+        actualizarCarrito();
+        }
+    });
+    });
 }
 
-function preocupacion(){
-    if (animo != "bien"){
-        alert ("Espero que se mejore");
-    } else {
-        alert("Me alegro");
-    }
+if (localStorage.getItem("carrito")) {
+    carrito.push(...JSON.parse(localStorage.getItem("carrito")));
 }
-
-function eleccion () {
-    if (decicion != "armar hamburguesa"){
-        class Producto {
-            constructor(nombre, ingredientes, precio) {
-            this.nombre = nombre;
-            this.ingredientes = ingredientes;
-            this.precio = precio;
-            this.vendido = false;
-            }
-            vender() {
-            this.vendido = true;
-            }
-            }
-            const productos = [];
-
-
-            productos.push(new Producto("flint loco","Medallon de Carne, Cebolla Caramelizada, Bacon, Cheddar, Tomates Asados,Barbacoa, Salsa Golf",2500));
-            productos.push(new Producto("beby brent","Medallon de Pollo, Tomate, Lechuga, Queso Provolone, Mayonesa, Salsa Cheddar",
-            2300));
-            productos.push(new Producto("steve","Medallon de Soja, Queso Azul, Muzzarella, Tomate Cherry, Albaca, Queso Parmesano", 2000));
-
-            let hamburguesa = prompt("Ingrese el nombre de la hamburguesa").toLowerCase();
-
-            while (hamburguesa != "no") {
-            
-            let producto;
-
-            
-            for (const item of productos) {
-            if (item.nombre === hamburguesa) {
-                producto = item;
-            }
-            }
-
-            if (producto) {
-            let mensaje = `
-                Nombre: ${producto.nombre}
-                Ingredientes: ${producto.ingredientes}
-                Precio: $${producto.precio}
-            `;
-
-            alert(mensaje);
-            } else {
-            alert("Hamburguesa no encontrada");
-            }
-        
-            hamburguesa = prompt("Para agregar otra ingrase el nombre de la hamburguesa o si no quiere agregar ingrese no");
-        }
-        
-
-
-
-    } else {
-        const paty = [
-            {medallon: "carne", precio: 500},
-            {medallon: "pollo", precio: 400},
-            {medallon: "soja", precio: 300},
-        ];
-
-        let medallones = prompt("Le gustaria una hamburguesa de carne, pollo o de soja ?").toLowerCase();
-        
-        while (medallones != "no") {
-            const patys = paty.find((item) => item.medallon === medallones);
-        
-            if (patys) {
-            let message = `
-            Nombre: ${patys.medallon}
-            Precio: $${patys.precio}
-            `;
-
-            alert(message);
-            } else {
-            alert("Ingradiente no identificado");
-            }
-
-            medallones = prompt("Le gustaria agregar otro medallon de carne, pollo o de soja ?").toLowerCase();
-            }
-
-        const savor = [
-            {ingrediente: "tomate", precio: 70},
-            {ingrediente: "lechuga", precio: 50},
-            {ingrediente: "cebolla", precio: 60},
-            {ingrediente: "bacon", precio: 150},
-            {ingrediente: "cheddar", precio: 120},
-            {ingrediente: "queso azul", precio: 170},
-        ];
-        
-        
-        let contenido = prompt("Elija un ingrediente: tomate, lechuga, cebolla, bacon, cheddar, queso azul").toLowerCase();
-        
-        while (contenido != "listo") {
-            const savores = savor.find((item) => item.ingrediente === contenido);
-        
-            if (savores) {
-            let sms = `
-            Nombre: ${savores.ingrediente}
-            Precio: $${savores.precio}
-            `;
-        
-            alert(sms);
-            } else {
-            alert("Ingradiente no identificado");
-            }
-        
-            contenido = prompt("Elija otro ingrediente: tomate, lechuga, cebolla, bacon, cheddar, queso azul o si ya esta listo ponga listo").toLowerCase();
-        }
-
-        let pan = prompt("Elije tu Pan: Pan de papa, Pan de queso, Pan casero, Pan de semilla");
-
-        if (pan = "Pan de papa") {
-            alert("Buena eleccion");
-        } else if (pan = "Pan de queso") {
-            alert("Sos de los mios");
-        } else if (pan = "Pan casero") {
-            alert("Excelente");
-        } else {
-            alert("Buenisima Eleccion");
-        }
-
-        let aderesos = prompt ("Elija sus aderesos: Barbacoa, Mayonesa, Ketchup, Salsa Cheddar, Salsa Golf").toLowerCase();
-        
-        while ( aderesos != "listo") {
-            alert ("Genial");
-            aderesos = prompt("Elija otro aderesos: Barbacoa, Mayonesa, Ketchup, Salsa Cheddar, Salsa Golf o si ya esta listo ponga listo");
-        }
-        alert ("Fantastico, su pedido se a realizado");
-    }
-}
-
-
-// ALGORITMOS
-
-let nombre = prompt("Ingrese su nombre").toLowerCase();
-let apellido = prompt( "Ingrese su apellido" ).toLowerCase();
-
-saludar();
-
-let animo = prompt( `Como esta ${nombre}?`).toLowerCase();
-
-preocupacion();
-
-let decicion = prompt("Le gustaria armar su hamburguesa o una hamburguesa del menu ?").toLowerCase();
-
-eleccion();
-
-for(let pedido = 1; pedido <= 25; pedido ++) {
-    let nombret = prompt ("Ingrese su nombre nuevamente para finalizar").toLowerCase();
-    alert(`${nombret} tu pedido es el ${pedido}`);
-    let continuar = prompt("Desea realizar otro pedido?").toLowerCase();
-    if (continuar != "si"){
-        break;
-    } else {
-        decicion = prompt("Le gustaria armar su hamburguesa o una hamburguesa del menu ?").toLowerCase();
-        eleccion();
-    }
-}
-
-

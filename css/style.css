@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Dancing+Script&display=swap');
+*{
+    margin:0;
+    padding: 0;
+}
+.nav {
+    background-color: #dc5f00;
+    padding: 50px;
+}
+.medio{
+    background-color: #cf0a0a;
+    padding: 100px;
+}
+.pie {
+background-color: #dc5f00;
+padding: 50px;;
+}
+.contenido {
+    margin: 20px;
+}
+.carritoLindo {
+    background-color: #eeeeeeab;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 700px;
+    padding-left:100px;
+    margin-top: 20px;
+}
+.title {
+    text-align: center;
+    padding-right: 400px;
+    font-size: 70px;
+    font-family: 'Dancing Script', cursive;
+}
+
+
+
+
+
+
+.titulo{
+    color: #eeeeee;
+    font-family: 'Dancing Script', cursive;
+    font-size: xx-large;
+}
+.titulo h1 {
+    text-align: center;
+}
+.titulo img {
+    border-radius: 50px;
+    height: 150px;
+    display: flex;
+}
+
+.xd {
+    background-color: #000000;
+    color: #eeeeee;
+    width: 700px;
+    margin:100px;
+    padding-bottom: 20px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.xd h2 {
+    padding-bottom: 10px;
+}
+.xd p {
+    padding-bottom: 10px;
+}
+.xd span {
+    padding-right: 500px ;
+}
+.xd img {
+    width: 200px;
+    height: 200px;
+    padding-bottom: 10px;
+}
+
+
+.boton-vaciar-carrito{
+    background-color: #ff5733;
+    color: #000000;
+    padding: 10px;
+    border-radius: 10px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.boton-eliminar {
+    background-color: #333;
+    color: #fff;
+}
+
+.boton-carrito {
+    background-color: #ff5733;
+    color: #000000;
+    padding: 10px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    border-radius: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
