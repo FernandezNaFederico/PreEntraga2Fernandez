@@ -97,7 +97,13 @@ padding: 50px;;
     border-radius: 10px;
 }
 
-
+.boton-comprar {
+    background-color: #ff5733;
+    color: #000000;
+    padding: 10px;
+    border-radius: 10px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
 
 
 

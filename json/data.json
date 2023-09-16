@@ -1,0 +1,6 @@
+[
+    {"imagen":"../imagenes/BurgerC.jpg", "nombre":"Flint Loco", "ingredientes": "Medallon de carne, cebolla, cheddar, bacon, muzzarella, pan con semillas","precio": 2500},
+    {"imagen":"../imagenes/BurgerP.jpg", "nombre": "Baby Brent", "ingredientes": "Medallon de pollo, tomate, lechuga, pan con semillas", "precio": 2000},
+    {"imagen":"../imagenes/BurgerS.jpg", "nombre": "Steve", "ingredientes": "Medallon de soja, tomate, lechuga, pan de papa", "precio": 1500},
+    {"imagen":"../imagenes/BurgerQ.jpg", "nombre": "Chispas", "ingredientes": "Medallon de carne, queso, pan de papa", "precio": 1000}
+]
